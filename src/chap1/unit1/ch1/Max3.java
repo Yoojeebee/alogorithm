@@ -2,7 +2,6 @@ package chap1.unit1.ch1;
 
 import java.util.Scanner;
 
-// 세 정수 중 가장 큰 값을 구하는 Max3 클래스
 public class Max3 {
     public static void main(String[] args) {
         Scanner stdIn = new Scanner(System.in);
