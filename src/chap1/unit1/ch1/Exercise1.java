@@ -2,7 +2,8 @@ package chap1.unit1.ch1;
 
 import java.util.Scanner;
 
-public class Max3 {
+// 세 값을 비교하고 최대값을 뽑는 Main 메서드
+public class Exercise1 {
     public static void main(String[] args) {
         Scanner stdIn = new Scanner(System.in);
 
