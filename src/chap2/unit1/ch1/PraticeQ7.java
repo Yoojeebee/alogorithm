@@ -40,7 +40,6 @@ public class PraticeQ7 {
         for(int i = digit.length - 1; i >= 0; i--) {
             if(digit[i] == '1') {
                 total += Math.pow(2, count++);
-                System.out.println(total);
             } else if(digit[i] == '0') {
                 count++;
             }
