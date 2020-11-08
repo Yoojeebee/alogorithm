@@ -12,6 +12,6 @@
 자료구조 등을 고려하여 알고리즘을 선택
 
 ## 선형검색
-[선형검색] (src/chap3/unit1/ch1/Exercise3_1.java)  
+[선형검색] (https://github.com/Yoojeebee/alogorithm/blob/master/src/chap3/unit1/ch1/Exercise3_1.java)  
 요소가 직선 모양으로 늘어선 배열에서의 검색은 원하는 키 값을 갖는 요소를 만날 때까지 맨 앞 부터 순서대로 요소를 검색하면 되는데,
  이것이 선형 검색(Linear search)또는 순차 검색(Sequential search)이라는 알고리즘이다.
