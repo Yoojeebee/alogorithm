@@ -124,16 +124,17 @@ public int push(int item) {
 public int pop() {
     // top의 값이 0일 경우는 데이터가 없다는 뜻이기에 이와 같은 조건문 추가
     if(top != 0) {
-        // --cosor를 하는 이유는 push시 cosor의 위치를 1씩 증가시키기 때문에
-        // pop메서드를로 top의 값을 빼려는 위치가 다르기 때문이다
-        // item은 top에 
+        // item 변수에 top에 있는 값을 초기화 
         int item = top;
     
-        // pop 메서드를 실행하면 현재 cosor 위치에 있는 값을 0으로 초기화
+        // --cosor를 하는 이유는 push시 cosor의 위치를 1씩 증가시키기 때문에
+        // --cosor를 하게 되면 top의 값이 있는 자리로 커서가 돌아오고
+        // 이 커서가 가리키는 스택의 데이터를 0으로 초기화
         capacity[--cosor] = 0;
 
         // cosor가 0이 아니라는 말은 아직 데이터가 더 있다는 뜻으로 조건문을 통해
         // top의 데이터를 재초기화
+        // cosor가 0일 경우는 더 이상 데이터가 없다는 뜻으로 top, bottom 데이터를 0으로 초기화
         if(cosor != 0) {
             top = capacity[cosor - 1];
         } else {
@@ -161,3 +162,88 @@ public int peek() {
 }
 ```
 <br/>
+
+- 검색 메서드 indexOf  
+    스택 본체의 배열에 입력한 데이터 값이 포함되어 있는지 확인하며, 포함되어 있다면 배열의 어디에 있는지를 알려주는 메서드
+```java
+public int indexOf(int data) {
+    // top이 0이 아니라는 것은 데이터가 최소 1개 이상은 들어있다는 뜻이기에 이와 같은 조건문 추가
+   if(top != 0) {
+        // cosor - 1 을 한 이유는 cosor는 push시 자동적으로 1이 증가되어 다음 위치에 저장될 위치로 옮겨가기 때문에
+        // 데이터가 저장되어 있는 지점부터 데이터를 확인하려면 -1을 해줘야 한다
+       for(int i = cosor-1; i < cosor; i--) {
+           if(capacity[i] == data)
+               return i;
+       }
+   }
+   return 0;
+}
+```
+<br/>
+
+- 스택의 모든 요소를 삭제하는 메서드 clear  
+    스택에 쌓여있는 모든 데이터를 삭제
+```java
+public void clear() {
+    // cosor - 1 을 한 이유는 cosor는 push시 자동적으로 1이 증가되어 다음 위치에 저장될 위치로 옮겨가기 때문에
+    // 데이터가 저장되어 있는 지점부터 데이터를 확인하려면 -1을 해줘야 한다
+    for(int i = cosor -1; i == 0; i--) {
+        // 스택에 push된 모든 데이터들을 0으로 초기화(= null)
+        capacity[i] = 0;
+    }
+    // 스택의 모든 데이터가 초기화되었으므로 top, bottom도 초기화(= null)
+    top = 0;
+    bottom = 0;
+}
+```
+<br/>
+
+- 용량을 확인하는 메서드 capacity  
+    스택의 용량(Stack클래스의 배열 capacity의 길이)을 반환한다
+```java
+public int capacity() {
+    // top의 값이 0이 아니라는 것은 스택에 데이터가 있다는 뜻이고 그 뜻은 데이터의 용량이 설정되어 있다는 의미이다
+    if(top != 0) {
+        return capacity.length;
+    }
+    return 0;
+}
+```
+<br/>
+
+- 데이터 수를 확인하는 메서드 size  
+    현재 스택에 쌓여 있는 데이터 수(cosor의 값)을 반환
+```java
+public int size() {
+    // top의 값이 0이 아니라는 것은 스택에 데이터가 있다는 뜻이고 그 뜻은 데이터의 용량이 설정되어 있다는 의미이다
+    if(top != 0) {
+        return cosor;
+    }
+    return 0;
+}
+```
+<br/>
+
+- 스택이 비어 있는지 검사하는 메서드 isEmpty  
+    스택(Stack클래스의 capacity)이 비어있는지 확인하며 비어 있으면 true, 아니면 false
+```java
+public boolean isEmpty() {
+    // top의 값이 0이 아니라는 것은 스택에 데이터가 있다는 뜻이고 그 뜻은 데이터의 용량이 설정되어 있다는 의미이다
+    if(top != 0) {
+        return false;
+    }
+    return true;
+}
+```
+<br/>
+
+- 스택이 가득 찼는지 검사하는 메서드 isFull  
+    스택(Stack클래스의 capacity)의 용량이 가득 찼는지(= 데이터가 모든 배열의 요소에 들어갔는지) 확인하며 맞으면 true, 아니면 false
+```java
+public boolean isFull() {
+    if(cosor == capacity.length) {
+        return true;
+    }
+    return false;
+}
+```
