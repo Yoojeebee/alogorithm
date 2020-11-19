@@ -59,12 +59,12 @@ public class Stack {
 ```
 <br/>
 
-스택에 있는 데이터를 알려주는 커서(= 포인터)의 역할을 하는 cosor 변수를 구현
+스택의 n번째 자리를 가리키는 변수
 ```java
 public class Stack {
     ...
     
-    // 스택에 있는 데이터를 알려주는 변수
+    // 스택의 n번째 자리를 가리키는 변수
     public int cosor;
 }
 ```
@@ -101,7 +101,7 @@ public class Stack {
 
     스택에 데이터를 넣는 메서드
 ```java
-public int push(int item) {
+public int push(int data) {
     // item의 값이 정수값 0보다 큰 정수일 경우에만 푸시 되도록 하는 조건문
     if(item >= 0) {
         // 스택 데이터를 담는 capacity의 cosor에 itme 데이터를 초기화시킨다.
@@ -171,7 +171,7 @@ public int indexOf(int data) {
    if(top != 0) {
         // cosor - 1 을 한 이유는 cosor는 push시 자동적으로 1이 증가되어 다음 위치에 저장될 위치로 옮겨가기 때문에
         // 데이터가 저장되어 있는 지점부터 데이터를 확인하려면 -1을 해줘야 한다
-       for(int i = cosor-1; i < cosor; i--) {
+       for(int i = cosor-1; i > 0; i--) {
            if(capacity[i] == data)
                return i;
        }
@@ -187,7 +187,7 @@ public int indexOf(int data) {
 public void clear() {
     // cosor - 1 을 한 이유는 cosor는 push시 자동적으로 1이 증가되어 다음 위치에 저장될 위치로 옮겨가기 때문에
     // 데이터가 저장되어 있는 지점부터 데이터를 확인하려면 -1을 해줘야 한다
-    for(int i = cosor -1; i == 0; i--) {
+    for(int i = cosor -1; i >= 0; i--) {
         // 스택에 push된 모든 데이터들을 0으로 초기화(= null)
         capacity[i] = 0;
     }
