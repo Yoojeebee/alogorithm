@@ -59,12 +59,12 @@ public class Stack {
 ```
 <br/>
 
-스택에 있는 데이터를 알려주는 커서(= 포인터)의 역할을 하는 cosor 변수를 구현
+스택의 n번째 자리를 가리키는 변수
 ```java
 public class Stack {
     ...
     
-    // 스택에 있는 데이터를 알려주는 변수
+    // 스택의 n번째 자리를 가리키는 변수
     public int cosor;
 }
 ```
@@ -101,7 +101,7 @@ public class Stack {
 
     스택에 데이터를 넣는 메서드
 ```java
-public int push(int item) {
+public int push(int data) {
     // item의 값이 정수값 0보다 큰 정수일 경우에만 푸시 되도록 하는 조건문
     if(item >= 0) {
         // 스택 데이터를 담는 capacity의 cosor에 itme 데이터를 초기화시킨다.
@@ -171,7 +171,7 @@ public int indexOf(int data) {
    if(top != 0) {
         // cosor - 1 을 한 이유는 cosor는 push시 자동적으로 1이 증가되어 다음 위치에 저장될 위치로 옮겨가기 때문에
         // 데이터가 저장되어 있는 지점부터 데이터를 확인하려면 -1을 해줘야 한다
-       for(int i = cosor-1; i < cosor; i--) {
+       for(int i = cosor-1; i > 0; i--) {
            if(capacity[i] == data)
                return i;
        }
@@ -187,7 +187,7 @@ public int indexOf(int data) {
 public void clear() {
     // cosor - 1 을 한 이유는 cosor는 push시 자동적으로 1이 증가되어 다음 위치에 저장될 위치로 옮겨가기 때문에
     // 데이터가 저장되어 있는 지점부터 데이터를 확인하려면 -1을 해줘야 한다
-    for(int i = cosor -1; i == 0; i--) {
+    for(int i = cosor -1; i >= 0; i--) {
         // 스택에 push된 모든 데이터들을 0으로 초기화(= null)
         capacity[i] = 0;
     }
@@ -241,9 +241,29 @@ public boolean isEmpty() {
     스택(Stack클래스의 capacity)의 용량이 가득 찼는지(= 데이터가 모든 배열의 요소에 들어갔는지) 확인하며 맞으면 true, 아니면 false
 ```java
 public boolean isFull() {
+    // cosor: 다음 위치는 가리키는 변수
+    // capacity.length: 배열의 길이
+    // 만약, 용량 10의 capacity가 꽉차게 되면 cosor의 위치는 10(cosor 변수는 다음 위치의 값을 저장해야 되기 때문에 +1)
+    // capacity.length의 값은 10 그러므로 cosor의 값과 capacity.length이 같으면 용량이 꽉 찼다는 의미 
     if(cosor == capacity.length) {
         return true;
     }
     return false;
+}
+```
+<br/>
+
+- 스택 안에 있는 모든 데이터를 표시하는 메서드 printStackData  
+    스택(Stack클래스의 capacity)에 쌓여 있는 모든 데이터를 바닥(bottom)에서 꼭대기(top)순으로 표시
+```java
+public void printStackData() {
+    // top의 값이 0이 아니라는 것은 스택에 데이터가 있다는 뜻이고 그 뜻은 데이터의 용량이 설정되어 있다는 의미이다
+    if(top != 0) {
+        for (int i = cosor - 1; i >= 0; i--) {
+            System.out.println(capacity[i]);
+        }
+    } else {
+        System.out.println("스택이 비어 있습니다.");
+    }
 }
 ```
