@@ -103,12 +103,12 @@ public class Stack {
 ```java
 public int push(int data) {
     // item의 값이 정수값 0보다 큰 정수일 경우에만 푸시 되도록 하는 조건문
-    if(item >= 0) {
-        // 스택 데이터를 담는 capacity의 cosor에 itme 데이터를 초기화시킨다.
-        capacity[cosor++] = item;
+    if(data >= 0) {
+        // 스택 데이터를 담는 capacity의 cosor에 data 데이터를 초기화시킨다.
+        capacity[cosor++] = data;
 
-        // top은 가장 최신의 데이터인 item으로 초기화 시킨다
-        top = item;
+        // top은 가장 최신의 데이터인 data 초기화 시킨다
+        top = data;
 
         return 1;
     }
@@ -124,8 +124,8 @@ public int push(int data) {
 public int pop() {
     // top의 값이 0일 경우는 데이터가 없다는 뜻이기에 이와 같은 조건문 추가
     if(top != 0) {
-        // item 변수에 top에 있는 값을 초기화 
-        int item = top;
+        // data 변수에 top에 있는 값을 초기화 
+        int data = top;
     
         // --cosor를 하는 이유는 push시 cosor의 위치를 1씩 증가시키기 때문에
         // --cosor를 하게 되면 top의 값이 있는 자리로 커서가 돌아오고
@@ -142,7 +142,7 @@ public int pop() {
             bottom = 0;
         }
 
-        return item;
+        return data;
     }
     return 0;
 }
