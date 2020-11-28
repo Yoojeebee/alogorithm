@@ -66,28 +66,19 @@ public class StackQuiz {
 
     public int intPop() {
         if(integerStack.cosor >= 0) {
-            // Object배열 내용 삭제
-            int data = integerStack.top;
             capacity[leftCosor--] = null;
 
-            // IntegerStack 배열 내용 삭제
-            // IntegerStack 커서의 자리를 앞으로 뒤로
-            if(integerStack.cosor == integerStack.capacity.length) {
-                integerStack.cosor--;
-                integerStack.capacity[integerStack.cosor] = 0;
-            }
+            int topData = integerStack.capacity[--integerStack.cosor];
+            integerStack.capacity[integerStack.cosor] = 0;
 
-            if(integerStack.cosor - 1 >= 0) {
-                int topData = integerStack.capacity[--integerStack.cosor];
-                integerStack.capacity[integerStack.cosor] = 0;
-                integerStack.top = topData;
+            if(integerStack.cosor != 0) {
+                integerStack.top = integerStack.capacity[integerStack.cosor - 1];
             } else {
-                integerStack.cosor = 0;
                 integerStack.top = 0;
                 integerStack.bottom = 0;
             }
 
-            return data;
+            return topData;
         }
 
         System.out.println("IntegerStack은 이미 비어있습니다.");
@@ -96,25 +87,19 @@ public class StackQuiz {
 
     public String stringPop() {
         if(stringStack.cosor >= 0) {
-            String data = stringStack.top;
             capacity[rightCosor--] = null;
 
-            if(stringStack.cosor == stringStack.capacity.length) {
-                stringStack.cosor--;
-                stringStack.capacity[stringStack.cosor] = null;
-            }
+            String topData = stringStack.capacity[--stringStack.cosor];
+            stringStack.capacity[stringStack.cosor] = null;
 
-            if(stringStack.cosor - 1 >= 0) {
-                String topData = stringStack.capacity[--stringStack.cosor];
-                stringStack.capacity[stringStack.cosor] = null;
-                stringStack.top = topData;
+            if(stringStack.cosor != 0) {
+                stringStack.top = stringStack.capacity[stringStack.cosor - 1];
             } else {
-                stringStack.cosor = 0;
                 stringStack.top = null;
                 stringStack.bottom = null;
             }
 
-            return data;
+            return topData;
         }
 
         System.out.println("StringStack은 이미 비어있습니다.");
@@ -125,11 +110,11 @@ public class StackQuiz {
         // Integer 스택 최대 사이즈
         private final int MAX_INTEGER_STACK_SIZE = MAX_STACK_SIZE / 2;
 
-        private int top;
-        private int bottom;
-        private int cosor;
+        public int top;
+        public int bottom;
+        public int cosor;
 
-        private int[] capacity;
+        public int[] capacity;
 
         public IntegerStack() {
             capacity = new int[MAX_INTEGER_STACK_SIZE];
@@ -143,11 +128,11 @@ public class StackQuiz {
         // Integer 스택 최대 사이즈
         private final int MAX_STRING_STACK_SIZE = MAX_STACK_SIZE / 2;
 
-        private String top;
-        private String bottom;
-        private int cosor;
+        public String top;
+        public String bottom;
+        public int cosor;
 
-        private String[] capacity;
+        public String[] capacity;
 
         public StringStack() {
             capacity = new String[MAX_STRING_STACK_SIZE];

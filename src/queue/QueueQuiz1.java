@@ -41,7 +41,6 @@ public class QueueQuiz1 {
         int data = capacity[front];
         capacity[front++] = 0;
 
-        // rear와 front가 같다는 말은 배열에 데이터가 없다는 뜻
         if(rear == front) {
             front = 0;
             rear = 0;
