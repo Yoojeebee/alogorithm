@@ -195,3 +195,25 @@ public class Queue {
     }
 }
 ```
+<br/>
+
+- 비어있는지 확인(isEmpty)  
+    큐의 자료구조 배열의 데이터가 비어 있는지 확인하는 작업, 비어 있으면 true, 그렇지 않으면 false
+```java
+public class Queue {
+    public boolean isEmpty() {
+        return front == 0 ? true : false;
+    }
+}
+```
+<br/>
+
+- 가득찼는지 확인(isFull)  
+    큐의 자료구조 배열의 데이터가 가득 찼는지 확인하는 작업, 가득 찼으면 true, 그렇지 않으면 false
+```java
+public class Queue {
+    public boolean isFull() {
+        return rear < 0 ? true : false;
+    }
+}
+```
