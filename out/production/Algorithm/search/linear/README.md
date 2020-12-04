@@ -11,7 +11,8 @@
 1. 첫 번째 요소 6을 선택, 원하는 값이 아니다.
 2. 두 번째 요소 4를 선택, 원하는 값이 아니다.
 3. 세 번째 요소 7을 선택, 원하는 값이 아니다.  
-4. 네 번째 요소 3을 건택, 원하는 값이다.
+4. 네 번째 요소 3을 건택, 원하는 값이다.  
+<br/>
 
 하지만 만약 배열에서 키 값 8을 검색하게 된다면  
 
@@ -65,18 +66,19 @@ public class linearSearch<E> {
 > [2]. arr[i] == key
 > 종료조건 2: 검색 성공이므로 i를 반환
 
-![linear_code_image](https://github.com/Yoojeebee/alogorithm/blob/master/src/images/linear_search_3.jpg?raw=true)  
+![linear_code_image](https://github.com/Yoojeebee/alogorithm/blob/master/src/images/linear_searh_3.jpg?raw=true)  
 
 ## 보초법
 선형 검색의 종료 조건을 검사하는 비용(= 횟수)을 반으로 줄이는 방법  
 
-![보초법1](https://github.com/Yoojeebee/alogorithm/blob/master/src/images/linear_search_4_1.jpg?raw=true)  
+![보초법1](https://github.com/Yoojeebee/alogorithm/blob/master/src/images/linear_searh_4_1.jpg?raw=true)  
 
 위의 그림은 보초법을 그림으로 나타낸 예시이며 검색하기 전에 검색하고자 하는 키 값을 맨 끝 요소에 추가로 저장하며 이 때, 저장하는 값을 보초(sentinel)라 한다.  
+<br/>
 
 아래의 두 그림은 보초를 써 선형검색을 한 예이다.
 
-![보초법2](https://github.com/Yoojeebee/alogorithm/blob/master/src/images/linear_search_4.jpg?raw=true)  
+![보초법2](https://github.com/Yoojeebee/alogorithm/blob/master/src/images/linear_searh_4.jpg?raw=true)  
 
 > 1), 2) 두 배열 모두 각각의 키 값을 검색하기 위해 배열의 끝에 키 값을 저장한다.  
 
@@ -97,7 +99,9 @@ while(true) {
 보초를 쓰게 된다면 두 번째 if문 `if(arr[i] == key)` 가 아닌 위의 첫 번째 if문 `if(i==n)`에서 종료되게 된다.  
 <br/>
 
-### 선형검색(보초법 포함)을 구현한 코드
+### 선형검색(보초법 포함)을 구현한 코드  
+- Sentinel 클래스  
+    보초법을 이용한 선형 검색 클래스
 ```java
 public class Sentinel {
 
@@ -125,6 +129,42 @@ public class Sentinel {
         }
 
         return i == n ? -1 : i;
+    }
+}
+```
+<br/>
+
+- Main 클래스
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // 배열에 몇 개의 데이터를 넣을 것인지를 입력
+        System.out.print("요솟수 입력: ");
+        int num = scanner.nextInt();
+
+        // 배열의 끝 자리에 보초를 넣기위해 배열의 길이 num에 +1을 붙임
+        int arr[] = new int[num+1];
+
+        // 배열에 들어갈 데이터 입력
+        for(int i = 0; i < arr.length; i++) {
+            System.out.print("arr[" + "]: ");
+            arr[i] = scanner.nextInt();
+        }
+
+        // 키 값 입력
+        System.out.print("키 값: ");
+        int key = scanner.nextInt();
+
+        // 배열의 몇 번째 있는지 알려주는 변수
+        int keyIndex = Sentinel.seqSearchSen(arr, num, key);
+
+        if(keyIndex == 1)
+            System.out.println("키 값은 배열 arr[" + keyIndex + "]에 있다.");
+        else
+            System.out.println("그 값의 요소는 없습니다.");
     }
 }
 ```
